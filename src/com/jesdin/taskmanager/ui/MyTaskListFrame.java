@@ -1,4 +1,4 @@
-package com.jesdin.taskmanager.frames;
+package com.jesdin.taskmanager.ui;
 
 import com.jesdin.taskmanager.MockTasks;
 

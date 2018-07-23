@@ -1,6 +1,6 @@
 package com.jesdin.taskmanager;
 
-import com.jesdin.taskmanager.frames.MyTaskListFrame;
+import com.jesdin.taskmanager.ui.MyTaskListFrame;
 
 public class Main {
 
