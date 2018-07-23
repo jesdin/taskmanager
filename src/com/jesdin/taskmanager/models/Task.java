@@ -7,6 +7,11 @@ public class Task {
     private boolean isHighPriority;
     private boolean isCompleted;
 
+    //constructor
+    public Task(String title) {
+        setTitle(title);
+    }
+
     // public properties
     public String getTitle() {
         return title;
