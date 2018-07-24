@@ -13,6 +13,9 @@ public class MyTaskListFrame extends JFrame {
         add(btnNewTask);
 
         add(new TaskListPanel("High Priority"));
+        add(new TaskListPanel("Other Tasks"));
+        add(new TaskListPanel("Completed"));
+
 
         setTitle("My Tasklist");
         setSize(800, 600);
