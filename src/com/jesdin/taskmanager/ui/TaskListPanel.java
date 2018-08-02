@@ -3,14 +3,22 @@ package com.jesdin.taskmanager.ui;
 import com.jesdin.taskmanager.MockTasks;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class TaskListPanel extends JPanel {
 
     //constructors
     public TaskListPanel(String title) {
+
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(new JLabel(title));
+
+        setBorder(new CompoundBorder(BorderFactory.createEmptyBorder(5, 10, 0, 0),
+                new CompoundBorder(BorderFactory.createTitledBorder(title),
+                        BorderFactory.createMatteBorder(5, 10, 0, 0, Color.black))));
+
         for (var t : MockTasks.getTasks()) {
             //no object required as it is a static method
             var pnlLine = new JPanel();
