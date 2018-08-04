@@ -15,7 +15,7 @@ public class TaskListPanel extends JPanel {
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        setBorder(new CompoundBorder(BorderFactory.createEmptyBorder(5, 10, 0, 0),
+        setBorder(new CompoundBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0),
                 new CompoundBorder(BorderFactory.createTitledBorder(title),
                         BorderFactory.createMatteBorder(5, 10, 0, 0, Color.black))));
 
