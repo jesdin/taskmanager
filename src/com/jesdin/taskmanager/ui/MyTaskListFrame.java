@@ -18,26 +18,12 @@ public class MyTaskListFrame extends JFrame {
 
         //lambda listener
         btnNewTask.addActionListener(e -> {
-
-                JPanel pnlNewTask = new JPanel();
-                pnlNewTask.setLayout(new BoxLayout(pnlNewTask, BoxLayout.Y_AXIS));
-
-                JTextField txtInput = new JTextField();
-                txtInput.setColumns(25);
-                MockTasks.newTask(txtInput.getText());
-
-                ButtonGroup bgPriority = new ButtonGroup();
-                JRadioButton rbHighPriority = new JRadioButton("High Priority");
-                JRadioButton rbOther = new JRadioButton("Other");
-                bgPriority.add(rbHighPriority);
-                bgPriority.add(rbOther);
-
-                pnlNewTask.add(new JLabel("Enter New Task"));
-                pnlNewTask.add(txtInput);
-                pnlNewTask.add(rbHighPriority);
-                pnlNewTask.add(rbOther);
-
-                JOptionPane.showMessageDialog(getContentPane(), pnlNewTask, "New Task", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(
+                        getContentPane(),
+                        new NewTaskDialogPanel(),
+                        "New Task",
+                        JOptionPane.PLAIN_MESSAGE
+                );
             }
         );
         add(btnNewTask);
