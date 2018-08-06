@@ -3,9 +3,7 @@ package com.jesdin.taskmanager.ui;
 import com.jesdin.taskmanager.MockTasks;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class TaskListPanel extends JPanel {
@@ -19,7 +17,7 @@ public class TaskListPanel extends JPanel {
                     BorderFactory.createEmptyBorder(5, 0, 0, 0),
                     new CompoundBorder(
                             BorderFactory.createTitledBorder(title),
-                            BorderFactory.createMatteBorder(5, 10, 0, 0, Color.black)
+                            BorderFactory.createEmptyBorder(5, 10, 0, 10)
                     )
         ));
 
