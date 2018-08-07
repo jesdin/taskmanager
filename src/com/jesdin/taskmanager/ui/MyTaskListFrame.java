@@ -3,8 +3,6 @@ package com.jesdin.taskmanager.ui;
 import com.jesdin.taskmanager.MockTasks;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MyTaskListFrame extends JFrame {
     public MyTaskListFrame() {
@@ -18,12 +16,8 @@ public class MyTaskListFrame extends JFrame {
 
         //lambda listener
         btnNewTask.addActionListener(e -> {
-                JOptionPane.showMessageDialog(
-                        getContentPane(),
-                        new NewTaskDialogPanel(),
-                        "New Task",
-                        JOptionPane.PLAIN_MESSAGE
-                );
+                new NewTaskDialogPanel(this, "New Task").showDialog();
+                System.out.println("In event listner");
             }
         );
         add(btnNewTask);
