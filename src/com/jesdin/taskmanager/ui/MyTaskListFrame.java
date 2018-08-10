@@ -4,7 +4,7 @@ import com.jesdin.taskmanager.MockTasks;
 
 import javax.swing.*;
 
-public class MyTaskListFrame extends JFrame {
+public class MyTaskListFrame extends JFrame{
     public MyTaskListFrame() {
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -30,5 +30,6 @@ public class MyTaskListFrame extends JFrame {
         setSize(800, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+
     }
 }

@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class MockTasks {
 
-    private static ArrayList<Task> tasks = new ArrayList<Task>();
+    private static ArrayList<Task> tasks = new ArrayList<>();
+    public static ArrayList<IUpdateData> events = new ArrayList<>();
 
     //constructor
     static {
@@ -21,5 +22,8 @@ public class MockTasks {
     }
     public static void newTask(String t) {
         tasks.add(new Task(t));
+        for (var e: events) {
+            e.updateData();
+        }
     }
 }

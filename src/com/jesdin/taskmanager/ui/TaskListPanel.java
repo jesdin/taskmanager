@@ -1,12 +1,13 @@
 package com.jesdin.taskmanager.ui;
 
+import com.jesdin.taskmanager.IUpdateData;
 import com.jesdin.taskmanager.MockTasks;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import java.awt.*;
 
-public class TaskListPanel extends JPanel {
+public class TaskListPanel extends JPanel  implements IUpdateData {
 
     //constructors
     public TaskListPanel(String title) {
@@ -31,5 +32,12 @@ public class TaskListPanel extends JPanel {
             add(pnlLine);
         }
         add(Box.createVerticalGlue()); //adds space in between
+
+        MockTasks.events.add(this);
+    }
+
+    @Override
+    public void updateData() {
+        System.out.println("Updating data");
     }
 }
