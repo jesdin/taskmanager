@@ -15,13 +15,19 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         setBorder(new CompoundBorder(
-                    BorderFactory.createEmptyBorder(5, 0, 0, 0),
-                    new CompoundBorder(
-                            BorderFactory.createTitledBorder(title),
-                            BorderFactory.createEmptyBorder(5, 10, 0, 10)
-                    )
+                BorderFactory.createEmptyBorder(5, 0, 0, 0),
+                new CompoundBorder(
+                        BorderFactory.createTitledBorder(title),
+                        BorderFactory.createEmptyBorder(5, 10, 0, 10)
+                )
         ));
 
+        addItems();
+
+        MockTasks.events.add(this);
+    }
+
+    private void addItems() {
         for (var t : MockTasks.getTasks()) {
             //no object required as it is a static method
             var pnlLine = new JPanel();
@@ -32,12 +38,13 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
             add(pnlLine);
         }
         add(Box.createVerticalGlue()); //adds space in between
-
-        MockTasks.events.add(this);
     }
 
     @Override
     public void updateData() {
         System.out.println("Updating data");
+        removeAll();
+        addItems();
+        revalidate();
     }
 }
