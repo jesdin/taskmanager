@@ -1,5 +1,7 @@
 package com.jesdin.taskmanager.ui;
 
+import com.jesdin.taskmanager.MockTasks;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,10 +23,10 @@ public class NewTaskDialogPanel extends JDialog {
 
         JPanel pnlBtn = new JPanel();
         pnlBtn.setLayout(new FlowLayout());
-        JButton save = new JButton("Save");
-        JButton cancel = new JButton("Cancel");
-        pnlBtn.add(save);
-        pnlBtn.add(cancel);
+        JButton btnSave = new JButton("Save");
+        JButton btnCancel = new JButton("Cancel");
+        pnlBtn.add(btnSave);
+        pnlBtn.add(btnCancel);
 
         add(new JLabel("Enter New Task"));
         add(txtInput);
@@ -32,6 +34,16 @@ public class NewTaskDialogPanel extends JDialog {
         add(rbOther);
         add(pnlBtn);
         pack();
+
+        btnSave.addActionListener(e -> {
+                    MockTasks.newTask(txtInput.getText());
+                    dispose();
+                }
+        );
+        btnCancel.addActionListener(e -> {
+                dispose();
+            }
+        );
     }
 
     public void showDialog() {
