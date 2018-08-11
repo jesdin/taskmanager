@@ -36,7 +36,7 @@ public class NewTaskDialogPanel extends JDialog {
         pack();
 
         btnSave.addActionListener(e -> {
-                    MockTasks.newTask(txtInput.getText());
+                    MockTasks.newTask(txtInput.getText(), rbHighPriority.isSelected());
                     dispose();
                 }
         );

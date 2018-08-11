@@ -11,17 +11,17 @@ public class MockTasks {
 
     //constructor
     static {
-        tasks.add(new Task("Buy Eggs"));
-        tasks.add(new Task("Complete Data Structure Project"));
-        tasks.add(new Task("Play Free Fire"));
+        tasks.add(new Task("Buy Eggs", true));
+        tasks.add(new Task("Complete Data Structure Project", true));
+        tasks.add(new Task("Play Free Fire", false));
     }
 
     //methods
     public static Task[] getTasks() {
         return tasks.toArray(new Task[tasks.size()]);
     }
-    public static void newTask(String t) {
-        tasks.add(new Task(t));
+    public static void newTask(String t, boolean priority) {
+        tasks.add(new Task(t, priority));
         for (var e: events) {
             e.updateData();
         }
