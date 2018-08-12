@@ -5,7 +5,7 @@ public class Task {
     // private fields
     private String title;
     private boolean isHighPriority;
-    private boolean isCompleted;
+    private boolean isCompleted = false;
 
     //constructor
     public Task(String title, boolean HighPriority) {

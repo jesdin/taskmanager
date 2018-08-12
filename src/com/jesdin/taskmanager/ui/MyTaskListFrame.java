@@ -10,7 +10,7 @@ public class MyTaskListFrame extends JFrame{
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         //padding
-        getRootPane().setBorder(BorderFactory.createEmptyBorder(10, 10, 0, 0));
+        getRootPane().setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         var btnNewTask = new JButton("New Task");
 
@@ -22,12 +22,12 @@ public class MyTaskListFrame extends JFrame{
         );
         add(btnNewTask);
 
-        add(new TaskListPanel("High Priority"));
-        add(new TaskListPanel("Other Tasks"));
-        add(new TaskListPanel("Completed"));
+        add(new TaskListPanel(TaskListPanel.TaskListPanelType.HIGH_PRIORITY));
+        add(new TaskListPanel(TaskListPanel.TaskListPanelType.OTHER));
+        add(new TaskListPanel(TaskListPanel.TaskListPanelType.COMPLETED));
 
         setTitle("My Tasklist");
-        setSize(800, 600);
+        setSize(500, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 

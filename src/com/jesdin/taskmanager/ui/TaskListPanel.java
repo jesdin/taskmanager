@@ -9,15 +9,19 @@ import java.awt.*;
 
 public class TaskListPanel extends JPanel  implements IUpdateData {
 
+    private TaskListPanelType p;
+
     //constructors
-    public TaskListPanel(String title) {
+    public TaskListPanel(TaskListPanelType p) {
+
+        this.p = p;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         setBorder(new CompoundBorder(
                 BorderFactory.createEmptyBorder(5, 0, 0, 0),
                 new CompoundBorder(
-                        BorderFactory.createTitledBorder(title),
+                        BorderFactory.createTitledBorder(p.toString()),
                         BorderFactory.createEmptyBorder(5, 10, 0, 10)
                 )
         ));
@@ -29,14 +33,38 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
 
     private void addItems() {
         for (var t : MockTasks.getTasks()) {
-            //no object required as it is a static method
-            var pnlLine = new JPanel();
-            pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
-            pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
-            pnlLine.add(new JCheckBox(t.getTitle()));
-            pnlLine.add(new JButton("Edit"));
-            add(pnlLine);
+            if(p.equals(TaskListPanelType.HIGH_PRIORITY)) {
+                if(t.isHighPriority()) {
+                    var pnlLine = new JPanel();
+                    pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
+                    pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
+                    pnlLine.add(new JCheckBox(t.getTitle()));
+                    pnlLine.add(new JButton("Edit"));
+                    add(pnlLine);
+                }
+            }
+            if(p.equals(TaskListPanelType.OTHER)) {
+                if(!t.isHighPriority()) {
+                    var pnlLine = new JPanel();
+                    pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
+                    pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
+                    pnlLine.add(new JCheckBox(t.getTitle()));
+                    pnlLine.add(new JButton("Edit"));
+                    add(pnlLine);
+                }
+            }
+            if(p.equals(TaskListPanelType.COMPLETED)) {
+                if(t.isCompleted()) {
+                    var pnlLine = new JPanel();
+                    pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
+                    pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
+                    pnlLine.add(new JCheckBox(t.getTitle()));
+                    pnlLine.add(new JButton("Edit"));
+                    add(pnlLine);
+                }
+            }
         }
+        add(Box.createHorizontalGlue()); //place holder
         add(Box.createVerticalGlue()); //adds space in between
     }
 
@@ -46,5 +74,10 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
         removeAll();
         addItems();
         revalidate();
+    }
+
+// need to change addItems in this file and the para passing in NewTaskDialogPanel
+    enum TaskListPanelType {
+        HIGH_PRIORITY, OTHER, COMPLETED
     }
 }
