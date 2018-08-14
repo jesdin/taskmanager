@@ -14,7 +14,7 @@ public class MyTaskListFrame extends JFrame{
 
         //lambda listener
         btnNewTask.addActionListener(e -> {
-                new NewTaskDialogPanel(this, "New Task", NewTaskDialogPanel.DIALOG_TYPE.newTask).showDialog();
+                new TaskDialog(this, "New Task", TaskDialog.DIALOG_TYPE.newTask).showDialog();
                 System.out.println("In event listner");
             }
         );

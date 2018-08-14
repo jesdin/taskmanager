@@ -77,9 +77,9 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
-                    new NewTaskDialogPanel(owner,
+                    new TaskDialog(owner,
                             "Edit Task",
-                            NewTaskDialogPanel.DIALOG_TYPE.editTask,
+                            TaskDialog.DIALOG_TYPE.editTask,
                             t
                     ).showDialog();
                 }
@@ -100,7 +100,7 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
         revalidate();
     }
 
-// need to change addItems in this file and the para passing in NewTaskDialogPanel
+// need to change addItems in this file and the para passing in TaskDialog
     enum TaskListPanelType {
         HIGH_PRIORITY, OTHER, COMPLETED
     }

@@ -6,9 +6,9 @@ import com.jesdin.taskmanager.models.Task;
 import javax.swing.*;
 import java.awt.*;
 
-public class NewTaskDialogPanel extends JDialog {
+public class TaskDialog extends JDialog {
     //constructor
-    public NewTaskDialogPanel(Frame owner, String title, DIALOG_TYPE dialogType, Task task) {
+    public TaskDialog(Frame owner, String title, DIALOG_TYPE dialogType, Task task) {
         super(owner, title, true);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -59,7 +59,7 @@ public class NewTaskDialogPanel extends JDialog {
         );
     }
 
-    public NewTaskDialogPanel(Frame owner, String title, DIALOG_TYPE dialogType) {
+    public TaskDialog(Frame owner, String title, DIALOG_TYPE dialogType) {
         this(owner, title, dialogType, new Task());
     }
 
