@@ -1,7 +1,5 @@
 package com.jesdin.taskmanager.ui;
 
-import com.jesdin.taskmanager.MockTasks;
-
 import javax.swing.*;
 
 public class MyTaskListFrame extends JFrame{
@@ -16,15 +14,15 @@ public class MyTaskListFrame extends JFrame{
 
         //lambda listener
         btnNewTask.addActionListener(e -> {
-                new NewTaskDialogPanel(this, "New Task").showDialog();
+                new NewTaskDialogPanel(this, "New Task", NewTaskDialogPanel.DIALOG_TYPE.newTask).showDialog();
                 System.out.println("In event listner");
             }
         );
         add(btnNewTask);
 
-        add(new TaskListPanel(TaskListPanel.TaskListPanelType.HIGH_PRIORITY));
-        add(new TaskListPanel(TaskListPanel.TaskListPanelType.OTHER));
-        add(new TaskListPanel(TaskListPanel.TaskListPanelType.COMPLETED));
+        add(new TaskListPanel(TaskListPanel.TaskListPanelType.HIGH_PRIORITY, this));
+        add(new TaskListPanel(TaskListPanel.TaskListPanelType.OTHER, this));
+        add(new TaskListPanel(TaskListPanel.TaskListPanelType.COMPLETED, this));
 
         setTitle("My Tasklist");
         setSize(500, 600);

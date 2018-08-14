@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class NewTaskDialogPanel extends JDialog {
     //constructor
-    public NewTaskDialogPanel(Frame owner, String title) {
+    public NewTaskDialogPanel(Frame owner, String title, DIALOG_TYPE dialogType) {
         super(owner, title, true);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -50,4 +50,9 @@ public class NewTaskDialogPanel extends JDialog {
 
         setVisible(true);
     }
+
+    enum DIALOG_TYPE {
+        newTask,
+        editTask;
+    };
 }

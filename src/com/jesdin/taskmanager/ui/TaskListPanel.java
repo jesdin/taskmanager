@@ -6,22 +6,26 @@ import com.jesdin.taskmanager.MockTasks;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TaskListPanel extends JPanel  implements IUpdateData {
 
     private TaskListPanelType taskListPanelType;
+    Frame owner;
 
     //constructors
-    public TaskListPanel(TaskListPanelType p) {
+    public TaskListPanel(TaskListPanelType taskListPanelType, Frame owner) {
 
-        this.taskListPanelType = p;
+        this.taskListPanelType = taskListPanelType;
+        this.owner = owner;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         setBorder(new CompoundBorder(
                 BorderFactory.createEmptyBorder(5, 0, 0, 0),
                 new CompoundBorder(
-                        BorderFactory.createTitledBorder(p.toString()),
+                        BorderFactory.createTitledBorder(taskListPanelType.toString()),
                         BorderFactory.createEmptyBorder(5, 10, 0, 10)
                 )
         ));
@@ -58,13 +62,25 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
             var pnlLine = new JPanel();
             pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
             pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
+
             JCheckBox chkBox = new JCheckBox(t.getTitle());
             chkBox.setSelected(t.isCompleted());
             chkBox.addActionListener(e -> {
                 MockTasks.updateTask(t, chkBox.isSelected());
             });
             pnlLine.add(chkBox);
-            pnlLine.add(new JButton("Edit"));
+
+            JLabel hyperLink = new JLabel("Edit");
+            hyperLink.setForeground(Color.blue.darker());
+            hyperLink.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            hyperLink.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    new NewTaskDialogPanel(owner, "Edit Task", NewTaskDialogPanel.DIALOG_TYPE.editTask).showDialog();
+                }
+            });
+            pnlLine.add(hyperLink);
 
             add(pnlLine);
         }
