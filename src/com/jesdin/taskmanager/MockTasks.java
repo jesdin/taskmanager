@@ -20,8 +20,18 @@ public class MockTasks {
     public static Task[] getTasks() {
         return tasks.toArray(new Task[tasks.size()]);
     }
+
     public static void newTask(String t, boolean priority) {
         tasks.add(new Task(t, priority));
+        triggerEvent();
+    }
+
+    public static void updateTask(Task t, boolean completed) {
+        t.setCompleted(completed);
+        triggerEvent();
+    }
+
+    private static void triggerEvent() {
         for (var e: events) {
             e.updateData();
         }

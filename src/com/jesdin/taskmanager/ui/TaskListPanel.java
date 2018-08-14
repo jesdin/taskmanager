@@ -9,12 +9,12 @@ import java.awt.*;
 
 public class TaskListPanel extends JPanel  implements IUpdateData {
 
-    private TaskListPanelType p;
+    private TaskListPanelType taskListPanelType;
 
     //constructors
     public TaskListPanel(TaskListPanelType p) {
 
-        this.p = p;
+        this.taskListPanelType = p;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -33,36 +33,40 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
 
     private void addItems() {
         for (var t : MockTasks.getTasks()) {
-            if(p.equals(TaskListPanelType.HIGH_PRIORITY)) {
-                if(t.isHighPriority()) {
-                    var pnlLine = new JPanel();
-                    pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
-                    pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
-                    pnlLine.add(new JCheckBox(t.getTitle()));
-                    pnlLine.add(new JButton("Edit"));
-                    add(pnlLine);
+
+            if(taskListPanelType == TaskListPanelType.HIGH_PRIORITY) {
+                if(t.isHighPriority() && !t.isCompleted()) {
+                }
+                else{
+                    continue;
                 }
             }
-            if(p.equals(TaskListPanelType.OTHER)) {
-                if(!t.isHighPriority()) {
-                    var pnlLine = new JPanel();
-                    pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
-                    pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
-                    pnlLine.add(new JCheckBox(t.getTitle()));
-                    pnlLine.add(new JButton("Edit"));
-                    add(pnlLine);
+            else if(taskListPanelType == TaskListPanelType.OTHER) {
+                if (!t.isHighPriority() && !t.isCompleted()) {
+                }
+                else{
+                    continue;
                 }
             }
-            if(p.equals(TaskListPanelType.COMPLETED)) {
-                if(t.isCompleted()) {
-                    var pnlLine = new JPanel();
-                    pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
-                    pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
-                    pnlLine.add(new JCheckBox(t.getTitle()));
-                    pnlLine.add(new JButton("Edit"));
-                    add(pnlLine);
+            else if(taskListPanelType == TaskListPanelType.COMPLETED) {
+                if (t.isCompleted()) {
+                } else {
+                    continue;
                 }
             }
+
+            var pnlLine = new JPanel();
+            pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
+            pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
+            JCheckBox chkBox = new JCheckBox(t.getTitle());
+            chkBox.setSelected(t.isCompleted());
+            chkBox.addActionListener(e -> {
+                MockTasks.updateTask(t, chkBox.isSelected());
+            });
+            pnlLine.add(chkBox);
+            pnlLine.add(new JButton("Edit"));
+
+            add(pnlLine);
         }
         add(Box.createHorizontalGlue()); //place holder
         add(Box.createVerticalGlue()); //adds space in between
