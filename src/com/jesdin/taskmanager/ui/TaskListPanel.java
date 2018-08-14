@@ -71,13 +71,17 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
             pnlLine.add(chkBox);
 
             JLabel hyperLink = new JLabel("Edit");
-            hyperLink.setForeground(Color.blue.darker());
+            hyperLink.setForeground(Color.decode("#6492B4"));
             hyperLink.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             hyperLink.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
-                    new NewTaskDialogPanel(owner, "Edit Task", NewTaskDialogPanel.DIALOG_TYPE.editTask).showDialog();
+                    new NewTaskDialogPanel(owner,
+                            "Edit Task",
+                            NewTaskDialogPanel.DIALOG_TYPE.editTask,
+                            t
+                    ).showDialog();
                 }
             });
             pnlLine.add(hyperLink);

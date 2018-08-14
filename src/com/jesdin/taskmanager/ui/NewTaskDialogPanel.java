@@ -1,13 +1,14 @@
 package com.jesdin.taskmanager.ui;
 
 import com.jesdin.taskmanager.MockTasks;
+import com.jesdin.taskmanager.models.Task;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class NewTaskDialogPanel extends JDialog {
     //constructor
-    public NewTaskDialogPanel(Frame owner, String title, DIALOG_TYPE dialogType) {
+    public NewTaskDialogPanel(Frame owner, String title, DIALOG_TYPE dialogType, Task task) {
         super(owner, title, true);
 
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
@@ -28,7 +29,13 @@ public class NewTaskDialogPanel extends JDialog {
         pnlBtn.add(btnSave);
         pnlBtn.add(btnCancel);
 
-        add(new JLabel("Enter New Task"));
+        add(new JLabel("Task Title"));
+
+        if(dialogType == DIALOG_TYPE.editTask) {
+            txtInput.setText(task.getTitle());
+            rbHighPriority.setSelected(task.isHighPriority());
+            rbOther.setSelected(!task.isHighPriority());
+        }
         add(txtInput);
         add(rbHighPriority);
         add(rbOther);
@@ -36,14 +43,24 @@ public class NewTaskDialogPanel extends JDialog {
         pack();
 
         btnSave.addActionListener(e -> {
-                    MockTasks.newTask(txtInput.getText(), rbHighPriority.isSelected());
-                    dispose();
-                }
-        );
+            if(dialogType == DIALOG_TYPE.editTask) {
+                task.setTitle(txtInput.getText());
+                task.setHighPriority(rbHighPriority.isSelected());
+                MockTasks.updateTask(task, task.isCompleted());
+            }
+            else {
+                MockTasks.newTask(txtInput.getText(), rbHighPriority.isSelected());
+            }
+            dispose();
+        });
         btnCancel.addActionListener(e -> {
                 dispose();
             }
         );
+    }
+
+    public NewTaskDialogPanel(Frame owner, String title, DIALOG_TYPE dialogType) {
+        this(owner, title, dialogType, new Task());
     }
 
     public void showDialog() {

@@ -8,6 +8,7 @@ public class Task {
     private boolean isCompleted = false;
 
     //constructor
+    public Task() { }
     public Task(String title, boolean HighPriority) {
         setTitle(title);
         setHighPriority(HighPriority);
