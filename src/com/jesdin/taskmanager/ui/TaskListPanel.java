@@ -97,6 +97,7 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
         System.out.println("Updating data");
         removeAll();
         addItems();
+        repaint();
         revalidate();
     }
 

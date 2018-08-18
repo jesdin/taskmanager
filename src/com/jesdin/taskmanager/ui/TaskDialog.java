@@ -45,6 +45,7 @@ public class TaskDialog extends JDialog {
         btnSave.addActionListener(e -> {
             if(dialogType == DIALOG_TYPE.editTask) {
                 task.setTitle(txtInput.getText());
+
                 task.setHighPriority(rbHighPriority.isSelected());
                 MockTasks.updateTask(task, task.isCompleted());
             }
