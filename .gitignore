@@ -171,3 +171,6 @@ $RECYCLE.BIN/
 
 
 # End of https://www.gitignore.io/api/java,linux,macos,windows,intellij+all
+
+# Include the jar files from the lib/ folder
+!/lib/*.jar
