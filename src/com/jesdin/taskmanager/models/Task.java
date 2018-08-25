@@ -6,9 +6,13 @@ public class Task {
     private String title;
     private boolean isHighPriority;
     private boolean isCompleted = false;
+    private int id;
 
     //constructor
     public Task() { }
+    public Task(int id) {
+        this.id = id;
+    }
     public Task(String title, boolean HighPriority) {
         setTitle(title);
         setHighPriority(HighPriority);
@@ -37,5 +41,9 @@ public class Task {
 
     public void setCompleted(boolean completed) {
         isCompleted = completed;
+    }
+
+    public int getId() {
+        return id;
     }
 }

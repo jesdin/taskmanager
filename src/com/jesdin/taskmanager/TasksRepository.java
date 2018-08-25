@@ -61,16 +61,6 @@ public class TasksRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-//        try (Connection con = DriverManager.getConnection(connectionUrl); Statement stmt = con.createStatement();) {
-//            String SQL = "SELECT * FROM Production.Product;";
-//            ResultSet rs = stmt.executeQuery(SQL);
-//        }
-//        // Handle any errors that may have occurred.
-//        catch (SQLException e) {
-//            e.printStackTrace();
-//        }
     }
 
 //    destructor
