@@ -40,9 +40,8 @@ public class TasksRepository {
                     "INSERT INTO Task (Title, IsHighPriority, IsCompleted) VALUES\n('%s', %s, %s)",
                     task.getTitle(),
                     Boolean.compare(task.isHighPriority(), false),
-                    Boolean.compare(task.isCompleted(), false)
+                    0
             );
-            System.out.println(SQL);
             statement.execute(SQL);
             statement.close();
         } catch (SQLException e) {
@@ -51,7 +50,20 @@ public class TasksRepository {
     }
 
     public void edit(Task task) {
-
+        try {
+            var statement = connection.createStatement();
+            String SQL = String.format(
+                    "UPDATE Task SET Title = '%s', IsHighPriority = %s " +
+                            "WHERE id = %s",
+                    task.getTitle(),
+                    Boolean.compare(task.isHighPriority(), false),
+                    task.getId()
+            );
+            statement.execute(SQL);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setCompleted(int id) {
