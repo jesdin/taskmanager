@@ -67,11 +67,33 @@ public class TasksRepository {
     }
 
     public void setCompleted(int id) {
-
+        try {
+            var statement = connection.createStatement();
+            String SQL = String.format(
+                    "UPDATE Task SET IsCompleted = 1 " +
+                            "WHERE id = %s",
+                    id
+            );
+            statement.execute(SQL);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setNotCompleted(int id) {
-
+        try {
+            var statement = connection.createStatement();
+            String SQL = String.format(
+                    "UPDATE Task SET IsCompleted = 0 " +
+                            "WHERE id = %s",
+                    id
+            );
+            statement.execute(SQL);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private Connection connection;

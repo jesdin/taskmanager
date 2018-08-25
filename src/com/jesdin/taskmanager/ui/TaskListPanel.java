@@ -67,8 +67,12 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
             JCheckBox chkBox = new JCheckBox(t.getTitle());
             chkBox.setSelected(t.isCompleted());
             chkBox.addActionListener(e -> {
-                t.setCompleted(chkBox.isSelected());
-                new TasksRepository().edit(t);
+                if(chkBox.isSelected()) {
+                    new TasksRepository().setCompleted(t.getId());
+                }
+                else {
+                    new TasksRepository().setNotCompleted(t.getId());
+                }
                 MockTasks.updateTask(t, chkBox.isSelected());
             });
             pnlLine.add(chkBox);
