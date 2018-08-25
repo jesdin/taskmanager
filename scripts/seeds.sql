@@ -5,7 +5,8 @@ INSERT INTO Task (Title, IsHighPriority, IsCompleted)
 VALUES
     ('Buy Eggs', 0, 0),
     ('Complete Data Structure Assignment', 1, 0),
-    ('Play Free Fire', 0, 1)
+    ('Play Free Fire', 0, 1),
+    ('Write DLDA practs', 1, 1)
 GO
 
 -- return the contents of Task Table

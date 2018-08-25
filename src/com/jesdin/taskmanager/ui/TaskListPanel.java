@@ -2,6 +2,7 @@ package com.jesdin.taskmanager.ui;
 
 import com.jesdin.taskmanager.IUpdateData;
 import com.jesdin.taskmanager.MockTasks;
+import com.jesdin.taskmanager.TasksRepository;
 
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
@@ -36,7 +37,7 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
     }
 
     private void addItems() {
-        for (var t : MockTasks.getTasks()) {
+        for (var t : new TasksRepository().get()) {
 
             if(taskListPanelType == TaskListPanelType.HIGH_PRIORITY) {
                 if(t.isHighPriority() && !t.isCompleted()) {
