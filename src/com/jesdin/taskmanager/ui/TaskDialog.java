@@ -1,7 +1,7 @@
 package com.jesdin.taskmanager.ui;
 
 import com.jesdin.taskmanager.MockTasks;
-import com.jesdin.taskmanager.TasksRepository;
+import com.jesdin.taskmanager.persistence.TasksRepository;
 import com.jesdin.taskmanager.models.Task;
 
 import javax.swing.*;

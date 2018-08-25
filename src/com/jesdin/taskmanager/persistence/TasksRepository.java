@@ -1,4 +1,4 @@
-package com.jesdin.taskmanager;
+package com.jesdin.taskmanager.persistence;
 
 import com.jesdin.taskmanager.models.Task;
 
