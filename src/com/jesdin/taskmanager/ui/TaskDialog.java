@@ -1,6 +1,5 @@
 package com.jesdin.taskmanager.ui;
 
-import com.jesdin.taskmanager.MockTasks;
 import com.jesdin.taskmanager.persistence.TasksRepository;
 import com.jesdin.taskmanager.models.Task;
 
@@ -49,11 +48,9 @@ public class TaskDialog extends JDialog {
 
             if(dialogType == DIALOG_TYPE.editTask) {
                 new TasksRepository().edit(task);
-                MockTasks.updateTask(task, task.isCompleted());
             }
             else {
                 new TasksRepository().add(task);
-                MockTasks.newTask(txtInput.getText(), rbHighPriority.isSelected());
             }
             dispose();
         });

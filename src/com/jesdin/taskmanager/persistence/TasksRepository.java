@@ -1,5 +1,6 @@
 package com.jesdin.taskmanager.persistence;
 
+import com.jesdin.taskmanager.events.EventChannel;
 import com.jesdin.taskmanager.models.Task;
 
 import java.sql.*;
@@ -29,10 +30,6 @@ public class TasksRepository {
         return null;
     }
 
-    public Task get(int id) {
-        return null;
-    }
-
     public void add(Task task) {
         try {
             var statement = connection.createStatement();
@@ -44,6 +41,7 @@ public class TasksRepository {
             );
             statement.execute(SQL);
             statement.close();
+            EventChannel.publish();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,6 +59,7 @@ public class TasksRepository {
             );
             statement.execute(SQL);
             statement.close();
+            EventChannel.publish();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -76,6 +75,7 @@ public class TasksRepository {
             );
             statement.execute(SQL);
             statement.close();
+            EventChannel.publish();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -91,6 +91,7 @@ public class TasksRepository {
             );
             statement.execute(SQL);
             statement.close();
+            EventChannel.publish();
         } catch (SQLException e) {
             e.printStackTrace();
         }

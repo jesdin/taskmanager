@@ -1,7 +1,7 @@
 package com.jesdin.taskmanager.ui;
 
-import com.jesdin.taskmanager.ISubscriber;
-import com.jesdin.taskmanager.MockTasks;
+import com.jesdin.taskmanager.events.ISubscriber;
+import com.jesdin.taskmanager.events.EventChannel;
 import com.jesdin.taskmanager.persistence.TasksRepository;
 
 import javax.swing.*;
@@ -33,7 +33,7 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
 
         addItems();
 
-        MockTasks.subscribe(this);
+        EventChannel.subscribe(this);
     }
 
     private void addItems() {
@@ -73,7 +73,6 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
                 else {
                     new TasksRepository().setNotCompleted(t.getId());
                 }
-                MockTasks.updateTask(t, chkBox.isSelected());
             });
             pnlLine.add(chkBox);
 
