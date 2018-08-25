@@ -44,15 +44,15 @@ public class TaskDialog extends JDialog {
         pack();
 
         btnSave.addActionListener(e -> {
+            task.setTitle(txtInput.getText());
+            task.setHighPriority(rbHighPriority.isSelected());
+
             if(dialogType == DIALOG_TYPE.editTask) {
-                task.setTitle(txtInput.getText());
-                task.setHighPriority(rbHighPriority.isSelected());
                 new TasksRepository().edit(task);
                 MockTasks.updateTask(task, task.isCompleted());
             }
             else {
-                Task newTask = new Task(txtInput.getText(), rbHighPriority.isSelected());
-                new TasksRepository().add(newTask);
+                new TasksRepository().add(task);
                 MockTasks.newTask(txtInput.getText(), rbHighPriority.isSelected());
             }
             dispose();
