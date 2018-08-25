@@ -8,7 +8,7 @@ public class Task {
     private boolean isCompleted = false;
     private int id;
 
-    //constructor
+    //constructors
     public Task() { }
     public Task(int id) {
         this.id = id;

@@ -15,7 +15,7 @@ public class TasksRepository {
 
             ArrayList<Task> tasks = new ArrayList<>();
             while(rs.next()) {
-                Task t = new Task();
+                Task t = new Task(rs.getInt("Id"));
                 t.setTitle(rs.getString("Title"));
                 t.setHighPriority(rs.getBoolean("IsHighPriority"));
                 t.setCompleted(rs.getBoolean("IsCompleted"));
