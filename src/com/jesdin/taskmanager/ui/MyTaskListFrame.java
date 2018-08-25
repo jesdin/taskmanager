@@ -28,6 +28,5 @@ public class MyTaskListFrame extends JFrame{
         setSize(500, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
-
     }
 }
