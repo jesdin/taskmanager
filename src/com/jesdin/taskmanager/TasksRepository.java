@@ -34,7 +34,20 @@ public class TasksRepository {
     }
 
     public void add(Task task) {
-
+        try {
+            var statement = connection.createStatement();
+            String SQL = String.format(
+                    "INSERT INTO Task (Title, IsHighPriority, IsCompleted) VALUES\n('%s', %s, %s)",
+                    task.getTitle(),
+                    Boolean.compare(task.isHighPriority(), false),
+                    Boolean.compare(task.isCompleted(), false)
+            );
+            System.out.println(SQL);
+            statement.execute(SQL);
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void edit(Task task) {
