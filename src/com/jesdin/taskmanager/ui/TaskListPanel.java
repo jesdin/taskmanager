@@ -1,6 +1,6 @@
 package com.jesdin.taskmanager.ui;
 
-import com.jesdin.taskmanager.IUpdateData;
+import com.jesdin.taskmanager.ISubscriber;
 import com.jesdin.taskmanager.MockTasks;
 import com.jesdin.taskmanager.persistence.TasksRepository;
 
@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class TaskListPanel extends JPanel  implements IUpdateData {
+public class TaskListPanel extends JPanel  implements ISubscriber {
 
     private TaskListPanelType taskListPanelType;
     Frame owner;
@@ -33,7 +33,7 @@ public class TaskListPanel extends JPanel  implements IUpdateData {
 
         addItems();
 
-        MockTasks.events.add(this);
+        MockTasks.subscribe(this);
     }
 
     private void addItems() {

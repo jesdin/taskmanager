@@ -1,5 +1,5 @@
 package com.jesdin.taskmanager;
 
-public interface IUpdateData {
+public interface ISubscriber {
     void updateData();
 }

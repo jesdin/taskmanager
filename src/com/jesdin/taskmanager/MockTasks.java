@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class MockTasks {
 
     private static ArrayList<Task> tasks = new ArrayList<>();
-    public static ArrayList<IUpdateData> events = new ArrayList<>();
+    private static ArrayList<ISubscriber> subscribers = new ArrayList<>();
 
     //constructor
     static {
@@ -17,6 +17,10 @@ public class MockTasks {
     }
 
     //methods
+    public static void subscribe(ISubscriber subscriber) {
+        subscribers.add(subscriber);
+    }
+
     public static Task[] getTasks() {
         return tasks.toArray(new Task[tasks.size()]);
     }
@@ -32,7 +36,7 @@ public class MockTasks {
     }
 
     private static void triggerEvent() {
-        for (var e: events) {
+        for (var e: subscribers) {
             e.updateData();
         }
     }
