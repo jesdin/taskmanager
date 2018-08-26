@@ -97,6 +97,22 @@ public class TasksRepository {
         }
     }
 
+    public void delete(int id) {
+        try {
+            var statement = connection.createStatement();
+            String SQL = String.format(
+                    "DELETE FROM Task " +
+                            "WHERE id = %s",
+                    id
+            );
+            statement.execute(SQL);
+            statement.close();
+            EventChannel.publish();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Connection connection;
 
     //  constructor

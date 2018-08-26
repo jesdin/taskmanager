@@ -4,11 +4,13 @@ import com.jesdin.taskmanager.events.ISubscriber;
 import com.jesdin.taskmanager.events.EventChannel;
 import com.jesdin.taskmanager.persistence.TasksRepository;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 public class TaskListPanel extends JPanel  implements ISubscriber {
 
@@ -37,24 +39,24 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
     }
 
     private void addItems() {
-        for (var t : new TasksRepository().get()) {
+        for (var task : new TasksRepository().get()) {
 
             if(taskListPanelType == TaskListPanelType.HIGH_PRIORITY) {
-                if(t.isHighPriority() && !t.isCompleted()) {
+                if(task.isHighPriority() && !task.isCompleted()) {
                 }
                 else{
                     continue;
                 }
             }
             else if(taskListPanelType == TaskListPanelType.OTHER) {
-                if (!t.isHighPriority() && !t.isCompleted()) {
+                if (!task.isHighPriority() && !task.isCompleted()) {
                 }
                 else{
                     continue;
                 }
             }
             else if(taskListPanelType == TaskListPanelType.COMPLETED) {
-                if (t.isCompleted()) {
+                if (task.isCompleted()) {
                 } else {
                     continue;
                 }
@@ -64,14 +66,14 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
             pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
             pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-            JCheckBox chkBox = new JCheckBox(t.getTitle());
-            chkBox.setSelected(t.isCompleted());
+            JCheckBox chkBox = new JCheckBox(task.getTitle());
+            chkBox.setSelected(task.isCompleted());
             chkBox.addActionListener(e -> {
                 if(chkBox.isSelected()) {
-                    new TasksRepository().setCompleted(t.getId());
+                    new TasksRepository().setCompleted(task.getId());
                 }
                 else {
-                    new TasksRepository().setNotCompleted(t.getId());
+                    new TasksRepository().setNotCompleted(task.getId());
                 }
             });
             pnlLine.add(chkBox);
@@ -86,11 +88,41 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
                     new TaskDialog(owner,
                             "Edit Task",
                             TaskDialog.DIALOG_TYPE.editTask,
-                            t
+                            task
                     ).showDialog();
                 }
             });
             pnlLine.add(hyperLink);
+
+            //delete button
+            try {
+                JButton btnDelete = new JButton();
+                Image img = ImageIO.read(getClass().getResource("resources/delete.png"));
+                img = img.getScaledInstance(20, 20, 0);
+                btnDelete.setMinimumSize(new Dimension(20, 20));
+                btnDelete.setMaximumSize(new Dimension(20, 20));
+                btnDelete.setPreferredSize(new Dimension(20, 20));
+                btnDelete.setIcon(new ImageIcon(img));
+                btnDelete.setBackground(new Color(0, 0, 0, 0));
+                btnDelete.setBorderPainted(false);
+                pnlLine.add(Box.createHorizontalGlue());
+                pnlLine.add(btnDelete);
+                btnDelete.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        super.mouseClicked(e);
+                        var result = JOptionPane.showConfirmDialog(owner,
+                                "Are you sure?",
+                                "Confirm Delete",
+                                JOptionPane.YES_NO_OPTION);
+                        if(result == JOptionPane.YES_OPTION) {
+                            new TasksRepository().delete(task.getId());
+                        }
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             add(pnlLine);
         }
