@@ -10,6 +10,7 @@ public class TasksRepository {
 
     public ArrayList<Task> get() {
         try {
+            Class.forName("microsoft.sqlserver.jdbc.SQLServerDriver");
             var statement = connection.createStatement();
             String SQL = "SELECT * FROM Task;";
             ResultSet rs = statement.executeQuery(SQL);
@@ -25,6 +26,8 @@ public class TasksRepository {
             statement.close();
             return tasks;
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
