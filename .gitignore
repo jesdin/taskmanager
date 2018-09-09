@@ -1,7 +1,10 @@
+# Enclude the bin/ files
+bin/
 
-# Created by https://www.gitignore.io/api/java,linux,macos,windows,intellij+all
 
-### Intellij+all ###
+# Created by https://www.gitignore.io/api/java,linux,macos,windows,intellij,visualstudiocode
+
+### Intellij ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
@@ -11,6 +14,9 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+
+# Generated files
+.idea/**/contentModel.xml
 
 # Sensitive or high-churn files
 .idea/**/dataSources/
@@ -63,18 +69,16 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
-### Intellij+all Patch ###
-# Ignores the whole .idea folder and all .iml files
-# See https://github.com/joeblau/gitignore.io/issues/186 and https://github.com/joeblau/gitignore.io/issues/360
+### Intellij Patch ###
+# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
-.idea/
+# *.iml
+# modules.xml
+# .idea/misc.xml
+# *.ipr
 
-# Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
-
-*.iml
-modules.xml
-.idea/misc.xml
-*.ipr
+# Sonarlint plugin
+.idea/sonarlint
 
 ### Java ###
 # Compiled class file
@@ -144,6 +148,13 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -170,7 +181,4 @@ $RECYCLE.BIN/
 *.lnk
 
 
-# End of https://www.gitignore.io/api/java,linux,macos,windows,intellij+all
-
-# Include the jar files from the lib/ folder
-!/lib/*.jar
+# End of https://www.gitignore.io/api/java,linux,macos,windows,intellij,visualstudiocode
