@@ -1,3 +1,6 @@
+# Enclude the bin/ files
+bin/
+
 
 # Created by https://www.gitignore.io/api/java,linux,macos,windows,intellij+all
 
