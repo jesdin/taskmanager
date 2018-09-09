@@ -1,5 +1,9 @@
 # Enclude the bin/ files
 bin/
+<<<<<<< HEAD
+=======
+
+>>>>>>> Exclude the bin files
 
 
 # Created by https://www.gitignore.io/api/java,linux,macos,windows,intellij,visualstudiocode
