@@ -10,7 +10,6 @@ public class TasksRepository {
 
     public ArrayList<Task> get() {
         try {
-            Class.forName("microsoft.sqlserver.jdbc.SQLServerDriver");
             var statement = connection.createStatement();
             String SQL = "SELECT * FROM Task;";
             ResultSet rs = statement.executeQuery(SQL);
@@ -26,8 +25,6 @@ public class TasksRepository {
             statement.close();
             return tasks;
         } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return null;
@@ -121,7 +118,7 @@ public class TasksRepository {
     //  constructor
     public TasksRepository() {
         // Create a variable for the connection string.
-        String connectionUrl = "jdbc:sqlserver://localhost:1401;databaseName=TaskManagerDB;user=sa;password=admin123";
+        String connectionUrl = "jdbc:sqlserver://192.168.99.100:1401;databaseName=TaskManagerDB;user=sa;password=admin@123";
 
         try {
             connection = DriverManager.getConnection(connectionUrl);
