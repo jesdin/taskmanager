@@ -104,7 +104,9 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
                 btnDelete.setPreferredSize(new Dimension(20, 20));
                 btnDelete.setIcon(new ImageIcon(img));
                 btnDelete.setBackground(new Color(0, 0, 0, 0));
+                btnDelete.setOpaque(false);
                 btnDelete.setBorderPainted(false);
+                btnDelete.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 pnlLine.add(Box.createHorizontalGlue());
                 pnlLine.add(btnDelete);
                 btnDelete.addMouseListener(new MouseAdapter() {
