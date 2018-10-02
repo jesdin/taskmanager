@@ -66,6 +66,11 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
             pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
             pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
 
+            if(task.isHighPriority()) {
+                JLabel exclamation = new JLabel("!");
+                exclamation.setForeground(Color.red);
+                pnlLine.add(exclamation);
+            }
             JCheckBox chkBox = new JCheckBox(task.getTitle());
             chkBox.setSelected(task.isCompleted());
             chkBox.addActionListener(e -> {
