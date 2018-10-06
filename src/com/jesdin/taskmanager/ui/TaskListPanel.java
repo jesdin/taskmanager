@@ -19,20 +19,25 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
 
     //constructors
     public TaskListPanel(TaskListPanelType taskListPanelType, Frame owner) {
-
         this.taskListPanelType = taskListPanelType;
         this.owner = owner;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
+        String title;
+        if(taskListPanelType.equals(TaskListPanelType.HIGH_PRIORITY)) {
+            title = "High Priority";
+        }
+        else {
+            title = taskListPanelType.toString();
+        }
         setBorder(new CompoundBorder(
                 BorderFactory.createEmptyBorder(5, 0, 0, 0),
                 new CompoundBorder(
-                        BorderFactory.createTitledBorder(taskListPanelType.toString()),
+                        BorderFactory.createTitledBorder(title),
                         BorderFactory.createEmptyBorder(5, 10, 0, 10)
                 )
         ));
-
         addItems();
 
         EventChannel.subscribe(this);
@@ -139,7 +144,6 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
 
     @Override
     public void updateData() {
-        System.out.println("Updating data");
         removeAll();
         addItems();
         repaint();
