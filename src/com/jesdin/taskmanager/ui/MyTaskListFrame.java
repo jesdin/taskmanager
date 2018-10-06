@@ -20,8 +20,7 @@ public class MyTaskListFrame extends JFrame{
         );
         add(btnNewTask);
 
-        add(new TaskListPanel(TaskListPanel.TaskListPanelType.HIGH_PRIORITY, this));
-        add(new TaskListPanel(TaskListPanel.TaskListPanelType.OTHER, this));
+        add(new TaskListPanel(TaskListPanel.TaskListPanelType.TASKS, this));
         add(new TaskListPanel(TaskListPanel.TaskListPanelType.COMPLETED, this));
 
         setTitle("My Tasklist");

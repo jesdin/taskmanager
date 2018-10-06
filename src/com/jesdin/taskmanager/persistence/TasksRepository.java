@@ -11,7 +11,7 @@ public class TasksRepository {
     public ArrayList<Task> get() {
         try {
             var statement = connection.createStatement();
-            String SQL = "SELECT * FROM Task;";
+            String SQL = "SELECT * FROM Task ORDER BY IsHighPriority DESC, Id ASC;";
             ResultSet rs = statement.executeQuery(SQL);
 
             ArrayList<Task> tasks = new ArrayList<>();

@@ -25,11 +25,11 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         String title;
-        if(taskListPanelType.equals(TaskListPanelType.HIGH_PRIORITY)) {
-            title = "High Priority";
+        if(taskListPanelType.equals(TaskListPanelType.TASKS)) {
+            title = "My Tasks";
         }
         else {
-            title = taskListPanelType.toString();
+            title = "Completed Tasks";
         }
         setBorder(new CompoundBorder(
                 BorderFactory.createEmptyBorder(5, 0, 0, 0),
@@ -45,24 +45,13 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
 
     private void addItems() {
         for (var task : new TasksRepository().get()) {
-
-            if(taskListPanelType == TaskListPanelType.HIGH_PRIORITY) {
-                if(task.isHighPriority() && !task.isCompleted()) {
-                }
-                else{
-                    continue;
-                }
-            }
-            else if(taskListPanelType == TaskListPanelType.OTHER) {
-                if (!task.isHighPriority() && !task.isCompleted()) {
-                }
-                else{
+            if(taskListPanelType == TaskListPanelType.TASKS) {
+                if(task.isCompleted()) {
                     continue;
                 }
             }
             else if(taskListPanelType == TaskListPanelType.COMPLETED) {
-                if (task.isCompleted()) {
-                } else {
+                if (!task.isCompleted()) {
                     continue;
                 }
             }
@@ -75,6 +64,9 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
                 JLabel exclamation = new JLabel("!");
                 exclamation.setForeground(Color.red);
                 pnlLine.add(exclamation);
+            }
+            else{
+                pnlLine.add(new JLabel(" "));
             }
             JCheckBox chkBox = new JCheckBox(task.getTitle());
             chkBox.setSelected(task.isCompleted());
@@ -152,6 +144,6 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
 
 // need to change addItems in this file and the para passing in TaskDialog
     enum TaskListPanelType {
-        HIGH_PRIORITY, OTHER, COMPLETED
+        TASKS, COMPLETED
     }
 }
