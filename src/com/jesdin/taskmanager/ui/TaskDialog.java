@@ -16,11 +16,7 @@ public class TaskDialog extends JDialog {
         JTextField txtInput = new JTextField();
         txtInput.setColumns(25);
 
-        ButtonGroup bgPriority = new ButtonGroup();
-        JRadioButton rbHighPriority = new JRadioButton("High Priority");
-        JRadioButton rbOther = new JRadioButton("Other");
-        bgPriority.add(rbHighPriority);
-        bgPriority.add(rbOther);
+        JCheckBox isHighPriority = new JCheckBox("High Priority");
 
         JPanel pnlBtn = new JPanel();
         pnlBtn.setLayout(new FlowLayout());
@@ -33,18 +29,16 @@ public class TaskDialog extends JDialog {
 
         if(dialogType == DIALOG_TYPE.editTask) {
             txtInput.setText(task.getTitle());
-            rbHighPriority.setSelected(task.isHighPriority());
-            rbOther.setSelected(!task.isHighPriority());
+            isHighPriority.setSelected(task.isHighPriority());
         }
         add(txtInput);
-        add(rbHighPriority);
-        add(rbOther);
+        add(isHighPriority);
         add(pnlBtn);
         pack();
 
         btnSave.addActionListener(e -> {
             task.setTitle(txtInput.getText());
-            task.setHighPriority(rbHighPriority.isSelected());
+            task.setHighPriority(isHighPriority.isSelected());
 
             if(dialogType == DIALOG_TYPE.editTask) {
                 new TasksRepository().edit(task);
