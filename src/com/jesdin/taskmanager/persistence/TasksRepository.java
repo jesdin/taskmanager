@@ -6,7 +6,7 @@ import com.jesdin.taskmanager.models.Task;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class TasksRepository {
+public class TasksRepository implements AutoCloseable {
 
     public ArrayList<Task> get() {
         try {
@@ -129,14 +129,17 @@ public class TasksRepository {
 
 //    destructor
     @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        if(connection != null) {
-            if(!connection.isClosed()) {
-                connection.close();
+    public void close() {
+        try {
+            if (connection != null) {
+                if (!connection.isClosed()) {
+                    connection.close();
+                }
+                connection = null;
             }
-            connection = null;
         }
-
+        catch(SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

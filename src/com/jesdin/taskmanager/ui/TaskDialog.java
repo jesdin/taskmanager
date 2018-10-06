@@ -41,10 +41,14 @@ public class TaskDialog extends JDialog {
             task.setHighPriority(isHighPriority.isSelected());
 
             if(dialogType == DIALOG_TYPE.editTask) {
-                new TasksRepository().edit(task);
+                try(var repo = new TasksRepository()) {
+                    repo.edit(task);
+                }
             }
             else {
-                new TasksRepository().add(task);
+                try(var repo = new TasksRepository()) {
+                    repo.add(task);
+                }
             }
             dispose();
         });
