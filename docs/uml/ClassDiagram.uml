@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="140.39375" y="1196.0">com.jesdin.taskmanager.Main</node>
+    <node x="-52.30199502836382" y="633.3274905985085">com.jesdin.taskmanager.ui.TaskDialog</node>
+    <node x="0.0" y="413.5">com.jesdin.taskmanager.ui.TaskDialog.DIALOG_TYPE</node>
+    <node x="335.70000000000005" y="962.0">com.jesdin.taskmanager.ui.TaskListPanel.TaskListPanelType</node>
+    <node x="246.5" y="335.0">com.jesdin.taskmanager.persistence.TasksRepository</node>
+    <node x="139.89375" y="1095.0">com.jesdin.taskmanager.ui.MyTaskListFrame</node>
+    <node x="421.0" y="145.0">com.jesdin.taskmanager.events.EventChannel</node>
+    <node x="507.3020161290322" y="0.0">com.jesdin.taskmanager.events.ISubscriber</node>
+    <node x="247.5" y="771.0">com.jesdin.taskmanager.ui.TaskListPanel</node>
+    <node x="217.0" y="101.0">com.jesdin.taskmanager.models.Task</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.jesdin.taskmanager.ui.TaskDialog" target="com.jesdin.taskmanager.persistence.TasksRepository">
+      <point x="131.25" y="-48.0" />
+      <point x="334.75" y="590.0" />
+      <point x="317.75" y="590.0" />
+      <point x="-23.75" y="115.0" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskDialog.DIALOG_TYPE" target="com.jesdin.taskmanager.ui.TaskDialog">
+      <point x="45.0" y="36.5" />
+      <point x="105.0" y="590.0" />
+      <point x="124.75" y="590.0" />
+      <point x="-78.75" y="-48.0" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskListPanel" target="com.jesdin.taskmanager.models.Task">
+      <point x="53.0625" y="-70.5" />
+      <point x="442.0625" y="731.0" />
+      <point x="502.78682795698927" y="731.0" />
+      <point x="502.78682795698927" y="305.0" />
+      <point x="382.6" y="305.0" />
+      <point x="73.60000000000002" y="92.0" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.MyTaskListFrame" target="com.jesdin.taskmanager.ui.TaskDialog.DIALOG_TYPE">
+      <point x="-70.41666666666669" y="-25.5" />
+      <point x="153.97708333333333" y="1075.0" />
+      <point x="23.80631720430108" y="1075.0" />
+      <point x="23.80631720430108" y="590.0" />
+      <point x="15.0" y="590.0" />
+      <point x="-45.0" y="36.5" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskListPanel" target="com.jesdin.taskmanager.events.EventChannel">
+      <point x="88.4375" y="-70.5" />
+      <point x="477.4375" y="741.0" />
+      <point x="607.75" y="741.0" />
+      <point x="62.25" y="48.0" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskListPanel" target="com.jesdin.taskmanager.ui.TaskListPanel.TaskListPanelType">
+      <point x="56.60000000000002" y="70.5" />
+      <point x="445.6" y="937.0" />
+      <point x="407.20000000000005" y="937.0" />
+      <point x="0.0" y="-36.5" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskListPanel.TaskListPanelType" target="com.jesdin.taskmanager.ui.TaskListPanel">
+      <point x="-47.66666666666666" y="-36.5" />
+      <point x="359.53333333333336" y="937.0" />
+      <point x="389.0" y="937.0" />
+      <point x="0.0" y="70.5" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskListPanel" target="com.jesdin.taskmanager.ui.TaskDialog">
+      <point x="-88.4375" y="-70.5" />
+      <point x="300.5625" y="731.0" />
+      <point x="242.875" y="731.0" />
+      <point x="39.375" y="48.0" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.Main" target="com.jesdin.taskmanager.ui.MyTaskListFrame">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="25.5" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.persistence.TasksRepository" target="com.jesdin.taskmanager.models.Task">
+      <point x="-63.33333333333337" y="-115.0" />
+      <point x="278.16666666666663" y="315.0" />
+      <point x="309.0" y="315.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskListPanel" target="com.jesdin.taskmanager.ui.TaskDialog.DIALOG_TYPE">
+      <point x="-123.8125" y="-70.5" />
+      <point x="265.1875" y="741.0" />
+      <point x="35.5" y="741.0" />
+      <point x="35.5" y="590.0" />
+      <point x="45.0" y="590.0" />
+      <point x="-15.0" y="36.5" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.events.EventChannel" target="com.jesdin.taskmanager.events.ISubscriber">
+      <point x="-62.25" y="-48.0" />
+      <point x="483.25" y="76.0" />
+      <point x="534.9686827956989" y="76.0" />
+      <point x="-55.33333333333334" y="25.5" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.persistence.TasksRepository" target="com.jesdin.taskmanager.events.EventChannel">
+      <point x="63.33333333333337" y="-115.0" />
+      <point x="404.83333333333337" y="315.0" />
+      <point x="483.25" y="315.0" />
+      <point x="-62.25" y="48.0" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskDialog" target="com.jesdin.taskmanager.models.Task">
+      <point x="26.25" y="-48.0" />
+      <point x="229.75" y="590.0" />
+      <point x="209.0" y="590.0" />
+      <point x="209.0" y="315.0" />
+      <point x="272.2" y="315.0" />
+      <point x="-36.80000000000001" y="92.0" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskListPanel" target="com.jesdin.taskmanager.persistence.TasksRepository">
+      <point x="-17.6875" y="-70.5" />
+      <point x="371.3125" y="751.0" />
+      <point x="383.5" y="751.0" />
+      <point x="383.5" y="590.0" />
+      <point x="365.25" y="590.0" />
+      <point x="23.75" y="115.0" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.MyTaskListFrame" target="com.jesdin.taskmanager.ui.TaskListPanel">
+      <point x="14.083333333333371" y="-25.5" />
+      <point x="238.47708333333338" y="1055.0" />
+      <point x="314.20000000000005" y="1055.0" />
+      <point x="314.20000000000005" y="937.0" />
+      <point x="275.8" y="937.0" />
+      <point x="-113.19999999999999" y="70.5" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.MyTaskListFrame" target="com.jesdin.taskmanager.ui.TaskDialog">
+      <point x="-42.25" y="-25.5" />
+      <point x="182.14375" y="1065.0" />
+      <point x="109.32849462365596" y="1065.0" />
+      <point x="109.32849462365596" y="751.0" />
+      <point x="85.375" y="751.0" />
+      <point x="-118.125" y="48.0" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskDialog" target="com.jesdin.taskmanager.ui.TaskDialog.DIALOG_TYPE">
+      <point x="-131.25" y="-48.0" />
+      <point x="72.25" y="590.0" />
+      <point x="75.0" y="590.0" />
+      <point x="15.0" y="36.5" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.TaskListPanel" target="com.jesdin.taskmanager.events.ISubscriber">
+      <point x="123.8125" y="-70.5" />
+      <point x="512.8125" y="751.0" />
+      <point x="680.5" y="751.0" />
+      <point x="680.5" y="76.0" />
+      <point x="645.6353494623655" y="76.0" />
+      <point x="55.333333333333314" y="25.5" />
+    </edge>
+    <edge source="com.jesdin.taskmanager.ui.MyTaskListFrame" target="com.jesdin.taskmanager.ui.TaskListPanel.TaskListPanelType">
+      <point x="70.41666666666663" y="-25.5" />
+      <point x="294.81041666666664" y="1075.0" />
+      <point x="407.20000000000005" y="1075.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.2003825554705434" x="386.0" y="588.4131557141945" />
+  <SelectedNodes>
+    <node>com.jesdin.taskmanager.ui.TaskDialog</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
