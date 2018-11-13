@@ -1,12 +1,16 @@
-apply plugin: 'idea'
-//and standard one
-apply plugin: 'java'
+plugins {
+    id 'java'
+}
+
+group 'taskmanager'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 10
 
 repositories {
     mavenCentral()
 }
 
-
 dependencies {
-    compile 'com.microsoft.rest:client-runtime:1.6.3'
+    compile group: 'com.microsoft.rest', name: 'client-runtime', version: '1.6.3'
 }
