@@ -11,6 +11,7 @@ import javax.swing.border.CompoundBorder;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -106,8 +107,8 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
                 //delete button
                 try {
                     JButton btnDelete = new JButton();
-                    Image img = ImageIO.read(getClass().getResource("resources/delete.png"));
-                    img = img.getScaledInstance(20, 20, 0);
+                    final Image img = ImageIO.read(new FileInputStream("./src/main/resources/delete.png"))
+                                        .getScaledInstance(20, 20, 0);
                     btnDelete.setMinimumSize(new Dimension(20, 20));
                     btnDelete.setMaximumSize(new Dimension(20, 20));
                     btnDelete.setPreferredSize(new Dimension(20, 20));
