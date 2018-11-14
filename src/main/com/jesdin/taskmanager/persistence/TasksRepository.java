@@ -33,8 +33,7 @@ public class TasksRepository implements AutoCloseable{
     }
 
     public void edit(Task task) {
-        MyTask t = new MyTask();
-        t.withId(task.getId());
+        MyTask t = api.getMyTask1(task.getId());
         t.withTitle(task.getTitle());
         t.withIsCompleted(task.isCompleted());
         t.withIsHighPriority(task.isHighPriority());
