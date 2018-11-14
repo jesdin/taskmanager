@@ -378,9 +378,10 @@ public class MyAPIImpl extends ServiceClient implements MyAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the MyTask object if successful.
      */
-    public void putMyTask(int id) {
-        putMyTaskWithServiceResponseAsync(id).toBlocking().single().body();
+    public MyTask putMyTask(int id) {
+        return putMyTaskWithServiceResponseAsync(id).toBlocking().single().body();
     }
 
     /**
@@ -390,7 +391,7 @@ public class MyAPIImpl extends ServiceClient implements MyAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> putMyTaskAsync(int id, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<MyTask> putMyTaskAsync(int id, final ServiceCallback<MyTask> serviceCallback) {
         return ServiceFuture.fromResponse(putMyTaskWithServiceResponseAsync(id), serviceCallback);
     }
 
@@ -398,12 +399,12 @@ public class MyAPIImpl extends ServiceClient implements MyAPI {
      *
      * @param id the int value
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the MyTask object
      */
-    public Observable<Void> putMyTaskAsync(int id) {
-        return putMyTaskWithServiceResponseAsync(id).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<MyTask> putMyTaskAsync(int id) {
+        return putMyTaskWithServiceResponseAsync(id).map(new Func1<ServiceResponse<MyTask>, MyTask>() {
             @Override
-            public Void call(ServiceResponse<Void> response) {
+            public MyTask call(ServiceResponse<MyTask> response) {
                 return response.body();
             }
         });
@@ -413,16 +414,16 @@ public class MyAPIImpl extends ServiceClient implements MyAPI {
      *
      * @param id the int value
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the MyTask object
      */
-    public Observable<ServiceResponse<Void>> putMyTaskWithServiceResponseAsync(int id) {
+    public Observable<ServiceResponse<MyTask>> putMyTaskWithServiceResponseAsync(int id) {
         final MyTask myTask = null;
         return service.putMyTask(id, myTask)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<MyTask>>>() {
                 @Override
-                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<MyTask>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Void> clientResponse = putMyTaskDelegate(response);
+                        ServiceResponse<MyTask> clientResponse = putMyTaskDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -438,9 +439,10 @@ public class MyAPIImpl extends ServiceClient implements MyAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the MyTask object if successful.
      */
-    public void putMyTask(int id, MyTask myTask) {
-        putMyTaskWithServiceResponseAsync(id, myTask).toBlocking().single().body();
+    public MyTask putMyTask(int id, MyTask myTask) {
+        return putMyTaskWithServiceResponseAsync(id, myTask).toBlocking().single().body();
     }
 
     /**
@@ -451,7 +453,7 @@ public class MyAPIImpl extends ServiceClient implements MyAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<Void> putMyTaskAsync(int id, MyTask myTask, final ServiceCallback<Void> serviceCallback) {
+    public ServiceFuture<MyTask> putMyTaskAsync(int id, MyTask myTask, final ServiceCallback<MyTask> serviceCallback) {
         return ServiceFuture.fromResponse(putMyTaskWithServiceResponseAsync(id, myTask), serviceCallback);
     }
 
@@ -460,12 +462,12 @@ public class MyAPIImpl extends ServiceClient implements MyAPI {
      * @param id the int value
      * @param myTask the MyTask value
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the MyTask object
      */
-    public Observable<Void> putMyTaskAsync(int id, MyTask myTask) {
-        return putMyTaskWithServiceResponseAsync(id, myTask).map(new Func1<ServiceResponse<Void>, Void>() {
+    public Observable<MyTask> putMyTaskAsync(int id, MyTask myTask) {
+        return putMyTaskWithServiceResponseAsync(id, myTask).map(new Func1<ServiceResponse<MyTask>, MyTask>() {
             @Override
-            public Void call(ServiceResponse<Void> response) {
+            public MyTask call(ServiceResponse<MyTask> response) {
                 return response.body();
             }
         });
@@ -476,16 +478,16 @@ public class MyAPIImpl extends ServiceClient implements MyAPI {
      * @param id the int value
      * @param myTask the MyTask value
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the MyTask object
      */
-    public Observable<ServiceResponse<Void>> putMyTaskWithServiceResponseAsync(int id, MyTask myTask) {
+    public Observable<ServiceResponse<MyTask>> putMyTaskWithServiceResponseAsync(int id, MyTask myTask) {
         Validator.validate(myTask);
         return service.putMyTask(id, myTask)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<MyTask>>>() {
                 @Override
-                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                public Observable<ServiceResponse<MyTask>> call(Response<ResponseBody> response) {
                     try {
-                        ServiceResponse<Void> clientResponse = putMyTaskDelegate(response);
+                        ServiceResponse<MyTask> clientResponse = putMyTaskDelegate(response);
                         return Observable.just(clientResponse);
                     } catch (Throwable t) {
                         return Observable.error(t);
@@ -494,9 +496,9 @@ public class MyAPIImpl extends ServiceClient implements MyAPI {
             });
     }
 
-    private ServiceResponse<Void> putMyTaskDelegate(Response<ResponseBody> response) throws RestException, IOException {
-        return this.restClient().responseBuilderFactory().<Void, RestException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<Void>() { }.getType())
+    private ServiceResponse<MyTask> putMyTaskDelegate(Response<ResponseBody> response) throws RestException, IOException {
+        return this.restClient().responseBuilderFactory().<MyTask, RestException>newInstance(this.serializerAdapter())
+                .register(204, new TypeToken<MyTask>() { }.getType())
                 .build(response);
     }
 

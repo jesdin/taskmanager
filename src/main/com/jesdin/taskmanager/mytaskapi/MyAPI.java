@@ -167,8 +167,9 @@ public interface MyAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the MyTask object if successful.
      */
-    void putMyTask(int id);
+    MyTask putMyTask(int id);
 
     /**
      *
@@ -177,23 +178,23 @@ public interface MyAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Void> putMyTaskAsync(int id, final ServiceCallback<Void> serviceCallback);
+    ServiceFuture<MyTask> putMyTaskAsync(int id, final ServiceCallback<MyTask> serviceCallback);
 
     /**
      *
      * @param id the int value
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the MyTask object
      */
-    Observable<Void> putMyTaskAsync(int id);
+    Observable<MyTask> putMyTaskAsync(int id);
 
     /**
      *
      * @param id the int value
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the MyTask object
      */
-    Observable<ServiceResponse<Void>> putMyTaskWithServiceResponseAsync(int id);
+    Observable<ServiceResponse<MyTask>> putMyTaskWithServiceResponseAsync(int id);
     /**
      *
      * @param id the int value
@@ -201,8 +202,9 @@ public interface MyAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws RestException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the MyTask object if successful.
      */
-    void putMyTask(int id, MyTask myTask);
+    MyTask putMyTask(int id, MyTask myTask);
 
     /**
      *
@@ -212,25 +214,25 @@ public interface MyAPI {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<Void> putMyTaskAsync(int id, MyTask myTask, final ServiceCallback<Void> serviceCallback);
+    ServiceFuture<MyTask> putMyTaskAsync(int id, MyTask myTask, final ServiceCallback<MyTask> serviceCallback);
 
     /**
      *
      * @param id the int value
      * @param myTask the MyTask value
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the MyTask object
      */
-    Observable<Void> putMyTaskAsync(int id, MyTask myTask);
+    Observable<MyTask> putMyTaskAsync(int id, MyTask myTask);
 
     /**
      *
      * @param id the int value
      * @param myTask the MyTask value
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the {@link ServiceResponse} object if successful.
+     * @return the observable to the MyTask object
      */
-    Observable<ServiceResponse<Void>> putMyTaskWithServiceResponseAsync(int id, MyTask myTask);
+    Observable<ServiceResponse<MyTask>> putMyTaskWithServiceResponseAsync(int id, MyTask myTask);
 
     /**
      *
