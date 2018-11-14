@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TaskDialog extends JDialog {
+    private final TasksRepository repo = new TasksRepository();
+
     //constructor
     public TaskDialog(Frame owner, String title, DIALOG_TYPE dialogType, Task task) {
         super(owner, title, true);
@@ -41,14 +43,10 @@ public class TaskDialog extends JDialog {
             task.setHighPriority(isHighPriority.isSelected());
 
             if(dialogType == DIALOG_TYPE.editTask) {
-                try(var repo = new TasksRepository()) {
-                    repo.edit(task);
-                }
+                repo.edit(task);
             }
             else {
-                try(var repo = new TasksRepository()) {
-                    repo.add(task);
-                }
+                repo.add(task);
             }
             dispose();
         });

@@ -18,7 +18,8 @@ import java.util.ArrayList;
 public class TaskListPanel extends JPanel  implements ISubscriber {
 
     private TaskListPanelType taskListPanelType;
-    Frame owner;
+    private final TasksRepository repo = new TasksRepository();
+    private Frame owner;
 
     //constructors
     public TaskListPanel(TaskListPanelType taskListPanelType, Frame owner) {
@@ -47,45 +48,40 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
     }
 
     private void addItems() {
-        ArrayList<Task> tasks = null;
-        try(var repo = new TasksRepository()) {
-            tasks = repo.get();
-        }
-            for (var task : tasks) {
-                if(taskListPanelType == TaskListPanelType.TASKS) {
-                    if(task.isCompleted()) {
-                        continue;
-                    }
+        ArrayList<Task> tasks = repo.get();
+        for (var task : tasks) {
+            if(taskListPanelType == TaskListPanelType.TASKS) {
+                if(task.isCompleted()) {
+                    continue;
                 }
-                else if(taskListPanelType == TaskListPanelType.COMPLETED) {
-                    if (!task.isCompleted()) {
-                        continue;
-                    }
+            }
+            else if(taskListPanelType == TaskListPanelType.COMPLETED) {
+                if (!task.isCompleted()) {
+                    continue;
                 }
+            }
 
-                var pnlLine = new JPanel();
-                pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
-                pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
+            var pnlLine = new JPanel();
+            pnlLine.setLayout((new BoxLayout(pnlLine, BoxLayout.X_AXIS)));
+            pnlLine.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-                if(task.isHighPriority()) {
-                    JLabel exclamation = new JLabel("!");
-                    exclamation.setForeground(Color.red);
-                    pnlLine.add(exclamation);
+            if(task.isHighPriority()) {
+                JLabel exclamation = new JLabel("!");
+                exclamation.setForeground(Color.red);
+                pnlLine.add(exclamation);
+            }
+            else{
+                pnlLine.add(new JLabel(" "));
+            }
+            JCheckBox chkBox = new JCheckBox(task.getTitle());
+            chkBox.setSelected(task.isCompleted());
+            chkBox.addActionListener(e -> {
+                if (chkBox.isSelected()) {
+                    repo.setCompleted(task.getId());
+                } else {
+                    repo.setNotCompleted(task.getId());
                 }
-                else{
-                    pnlLine.add(new JLabel(" "));
-                }
-                JCheckBox chkBox = new JCheckBox(task.getTitle());
-                chkBox.setSelected(task.isCompleted());
-                chkBox.addActionListener(e -> {
-                    try(var repo = new TasksRepository()) {
-                        if (chkBox.isSelected()) {
-                            repo.setCompleted(task.getId());
-                        } else {
-                            repo.setNotCompleted(task.getId());
-                        }
-                    }
-                });
+            });
                 pnlLine.add(chkBox);
 
                 JLabel hyperLink = new JLabel("Edit");
@@ -128,9 +124,7 @@ public class TaskListPanel extends JPanel  implements ISubscriber {
                                     "Confirm Delete",
                                     JOptionPane.YES_NO_OPTION);
                             if(result == JOptionPane.YES_OPTION) {
-                                try(var repo = new TasksRepository()) {
-                                    repo.delete(task.getId());
-                                }
+                                repo.delete(task.getId());
                             }
                         }
                     });

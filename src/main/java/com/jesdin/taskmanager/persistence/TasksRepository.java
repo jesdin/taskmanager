@@ -8,7 +8,7 @@ import com.jesdin.taskmanager.mytaskapi.models.MyTask;
 
 import java.util.ArrayList;
 
-public class TasksRepository implements AutoCloseable{
+public class TasksRepository{
 
     private final MyAPI api = new MyAPIImpl("http://localhost:63422");
 
@@ -60,17 +60,5 @@ public class TasksRepository implements AutoCloseable{
     public void delete(int id) {
         api.deleteMyTask(id);
         EventChannel.publish();
-    }
-
-
-    //  constructor
-    public TasksRepository() {
-        // Create a variable for the connection string.
-        String connectionUrl = "jdbc:sqlserver://192.168.99.100:1401;databaseName=TaskManagerDB;user=sa;password=admin@123";
-    }
-
-    @Override
-    public void close() {
-
     }
 }
