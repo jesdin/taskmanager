@@ -14,3 +14,7 @@ repositories {
 dependencies {
     compile group: 'com.microsoft.rest', name: 'client-runtime', version: '1.6.3'
 }
+
+task autorest(type: Exec) {
+    commandLine 'cmd', '/c', 'autorest --input-file=http://localhost:63422/swagger/v1/swagger.json --output-folder=. --namespace=com.jesdin.taskmanager.mytaskapi --java'
+}
