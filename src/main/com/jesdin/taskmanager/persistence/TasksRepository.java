@@ -1,5 +1,6 @@
 package com.jesdin.taskmanager.persistence;
 
+import com.jesdin.taskmanager.events.EventChannel;
 import com.jesdin.taskmanager.models.Task;
 import com.jesdin.taskmanager.mytaskapi.MyAPI;
 import com.jesdin.taskmanager.mytaskapi.implementation.MyAPIImpl;
@@ -30,6 +31,7 @@ public class TasksRepository implements AutoCloseable{
         t.withIsCompleted(task.isCompleted());
         t.withIsHighPriority(task.isHighPriority());
         api.postMyTask(t);
+        EventChannel.publish();
     }
 
     public void edit(Task task) {
@@ -38,22 +40,26 @@ public class TasksRepository implements AutoCloseable{
         t.withIsCompleted(task.isCompleted());
         t.withIsHighPriority(task.isHighPriority());
         api.putMyTask(task.getId(), t);
+        EventChannel.publish();
     }
 
     public void setCompleted(int id) {
         MyTask task = api.getMyTask1(id);
         task.withIsCompleted(true);
         api.putMyTask(id, task);
+        EventChannel.publish();
     }
 
     public void setNotCompleted(int id) {
         MyTask task = api.getMyTask1(id);
         task.withIsCompleted(false);
         api.putMyTask(id, task);
+        EventChannel.publish();
     }
 
     public void delete(int id) {
         api.deleteMyTask(id);
+        EventChannel.publish();
     }
 
 
